@@ -1,0 +1,1500 @@
+Practical 4
+
+A.	Write a C++ program for drawing line using DDA algorithm on computer screen.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> void main()
+
+{
+
+int gd=DETECT,gm; int x1,y1,x2,y2,l,i=1; float x,y,dx,dy;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); cout<<"Enter co-ordinates for 1st point: "; cin>>x1>>y1;
+
+cout<<"Enter co-ordinates for 2nd point: "; cin>>x2>>y2;
+
+dx=abs(x2-x1); dy=abs(y2-y1); if(dx>=dy)
+
+{
+
+ 
+
+
+
+}
+
+else
+
+{
+
+
+
+}
+
+ 
+
+l=dx;
+
+
+
+
+
+
+
+l=dy;
+
+ 
+
+dx=(x2-x1/l);
+
+dy=(y2-y1/l); x=x1+0.5;
+
+ 
+
+y=y1+0.5;
+
+while(i<=l)
+
+{
+
+putpixel(x,y,15); x=x+dx;
+
+y=y+dy; i++;
+
+}
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+ 
+
+
+
+
+
+
+
+B.	Write a C++ program for drawing line using Bresenham’s Line Drawing algorithm on computer screen.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> void main()
+
+{
+
+ 
+
+int gd=DETECT,gm;
+
+int x1,y1,x2,y2,x,y,dx,dy,pk,i=1; initgraph(&gd,&gm,"C:\\TC\\BGI"); cout<<"Enter start point: "; cin>>x1>>y1;
+
+cout<<"Enter end point: "; cin>>x2>>y2;
+
+dx=abs(x2-x1); dy=abs(y2-y1); x=x1;
+
+y=y1; pk=2*(dy-dx); do
+
+{
+
+putpixel(x,y,YELLOW); x=x+1;
+
+y=y+1;
+
+pk=pk+(2*dy); i++;
+
+}
+
+while(i<=dx); getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+ 
+
+
+
+
+
+
+
+C.	Write a C++ program to implement Bresenham’s Circle Drawing algorithm on computer screen.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> void main()
+
+{
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); int x,y,r,pk,i;
+
+cout<<"\n Enter the radius:"; cin>>r;
+
+pk=3-(2*r); x=0;
+
+y=r; do
+
+{
+
+putpixel((getmaxx()/2)+x,(getmaxy()/2)+y,15);
+
+ 
+
+putpixel((getmaxx()/2)+x,(getmaxy()/2)-y,15);
+
+putpixel((getmaxx()/2)-x,(getmaxy()/2)+y,15);
+
+putpixel((getmaxx()/2)-x,(getmaxy()/2)-y,15); putpixel((getmaxx()/2)+y,(getmaxy()/2)+x,15); putpixel((getmaxx()/2)+y,(getmaxy()/2)-x,15);
+
+putpixel((getmaxx()/2)-y,(getmaxy()/2)+x,15);
+
+putpixel((getmaxx()/2)-y,(getmaxy()/2)-x,15); if(pk<0)
+
+{
+
+ 
+
+
+
+}
+
+else
+
+{
+
+
+
+
+
+}
+
+ 
+
+pk=pk+4*x+6;
+
+
+
+
+
+
+
+pk=pk+4*(x-y)+10; y=y-1;
+
+ 
+
+x=x+1;
+
+}
+
+while(x<y); getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+Practical 5
+
+A.	Write a C++ program to implement Midpoint Circle Drawing algorithm on computer screen.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> void main()
+
+{
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); int x0,y0,pk,r;
+
+float x,y;
+
+cout<<"\n Enter the points: "; cin>>x0>>y0;
+
+cout<<"Enter radius: "; cin>>r;
+
+x=0;
+
+y=r; pk=(5/4)-r; while(x<=y)
+
+{
+
+putpixel(x0+x,y0+y,15); putpixel(x0+y,y0+x,15); putpixel(x0-x,y0+y,15); putpixel(x0-y,y0+x,15); putpixel(x0-x,y0-y,15);
+
+putpixel(x0-y,y0-x,15); putpixel(x0+x,y0-y,15); putpixel(x0+y,y0-x,15);
+
+ 
+
+if(pk<0)
+
+{
+
+ 
+
+
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+
+
+
+
+}
+
+}
+
+ 
+
+x=x+1; y=y;
+
+pk=pk+2*(x)+3;
+
+
+
+
+
+
+
+x=x+1; y=y-1;
+
+pk=pk+2*(x-y)+5;
+
+ 
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+
+
+B.	Write a C++ program for generating Midpoint Ellipse Drawing algorithm on computer screen.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h>
+
+ 
+
+#include<graphics.h> #include<stdlib.h> void main()
+
+{
+
+clrscr();
+
+int gd=DETECT,gm; int xc,yc,x,y;
+
+float p; long rx,ry;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); cout<<"Enter coordinates of centre:"; cin>>xc>>yc;
+
+cout<<"Enter x,y radius of ellipse:"; cin>>rx>>ry;
+
+p=ry*ry-rx*rx * ry-rx * rx/4; x=0;
+
+y=ry;
+
+while(2.0 * ry * ry * x <= 2.0 * rx * rx * y)
+
+{
+
+if(p<0)
+
+{
+
+ 
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+
+
+
+
+}
+
+ 
+
+x++;
+
+p=p+2*ry * ry * x+ry * ry;
+
+
+
+
+
+
+
+x++; y--;
+
+p=p+2*ry*ry*x-2*rx*rx*y-ry*ry;
+
+ 
+
+putpixel(xc+x,yc+y,WHITE); putpixel(xc+x,yc-y,GREEN); putpixel(xc-x,yc+y,RED);
+
+ 
+
+putpixel(xc-x,yc-y,YELLOW);
+
+}
+
+p=ry*ry*(x+0.5)*(x+0.5)+rx*rx*(y-1)*(y-1)-rx*rx*ry*ry; while(y>0)
+
+{
+
+if(p<=0)
+
+{
+
+ 
+
+
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+
+
+}
+
+ 
+
+x++; y--;
+
+p=p+2*ry*ry*x-2*rx*rx*y+rx*rx;
+
+
+
+
+
+
+
+y--;
+
+p=p-2*rx*rx*y+rx*rx;
+
+ 
+
+putpixel(xc+x,yc+y,WHITE); putpixel(xc+x,yc-y,GREEN); putpixel(xc-x,yc+y,RED); putpixel(xc-x,yc-y,YELLOW);
+
+}
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+ 
+
+ 
+
+Practical 6
+
+A.	Write a program for implementing 2D Scaling transformation.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> #include<dos.h>
+
+void main()
+
+{
+
+clrscr();
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); int x1,y1,x2,y2,x3,y3,sx,sy;
+
+cout<<"Enter 3 coordinates as (x,y):"; cout<<"\n 1: ";
+
+cin>>x1>>y1; cout<<"\n 2: "; cin>>x2>>y2; cout<<"\n 3: "; cin>>x3>>y3; setcolor(13); line(x1,y1,x2,y2);
+
+line(x2,y2,x3,y3);
+
+line(x3,y3,x1,y1);
+
+cout<<"Enter x and y scale factors: "; cin>>sx>>sy;
+
+x1=x1*sx; y1=y1*sy; x2=x2*sx; y2=y2*sy; x3=x3*sx;
+
+ 
+
+y3=y3*sy; setcolor(9); line(x1,y1,x2,y2);
+
+line(x2,y2,x3,y3);
+
+line(x3,y3,x1,y1); getch();
+
+closegraph();
+
+}
+
+
+
+
+
+Note:
+
+1.	Scale factors (i.e sx and sy) value should always be in the range 1,2,3.
+
+2.	In a 2D scaling program's code, when entering coordinates as input, the values should correspond in a consistent manner. For instance, if coordinates are labeled as (x1, y1), then y1 should correspond to
+
+x2, and similarly, y3 should correspond to x1 to maintain the matching pattern between values during scaling operations.
+
+3. Eg: (100, 150), (150, 200), (200,100) to form a triangle. Output:
+
+ 
+
+B.	Write a program for implementing 2D Rotation transformation.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> #include<dos.h>
+
+void triangle(int x1,int y1,int x2,int y2,int x3,int y3)
+
+{
+
+line(x1,y1,x2,y2);
+
+line(x2,y2,x3,y3);
+
+line(x3,y3,x1,y1);
+
+}
+
+void main()
+
+{
+
+clrscr(); double a;
+
+int ang,x1,y1,x2,y2,x3,y3,x4,y4,x5,y5,x6,y6; int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); cout<<"\n Enter 3 coordinates : "; cin>>x1>>y1>>x2>>y2>>x3>>y3;
+
+triangle(x1,y1,x2,y2,x3,y3); cout<<"\n Enter angle: "; cin>>ang;
+
+setcolor(6); a=ang*(3.14/180); x4=x1+cos(a)-y1*sin(a); y4=x1+sin(a)+y1*cos(a); x5=x2+cos(a)-y2*sin(a); y5=x2+sin(a)+y2*cos(a); x6=x3+cos(a)-y3*sin(a);
+
+ 
+
+y6=x3+sin(a)+y3*cos(a); setcolor(12);
+
+triangle(x4,y4,x5,y5,x6,y6); getch();
+
+closegraph();
+
+}
+
+
+
+
+
+Output:
+
+
+
+
+
+C.	Write a program for implementing 2D Translation transformation.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h>
+
+ 
+
+#include<graphics.h> #include<dos.h> void main()
+
+{
+
+int x1,x2,x3,x4,y1,y2,y3,y4,t,ch; cout<<"\n Enter the coordinates: "; cin>>x1>>y1>>x2>>y2;
+
+cout<<"\n Enter Shift Parameters: "; cin>>t;
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); setcolor(6);
+
+cout<<"\n 1: x side"; cout<<"\n 2: y side"; cout<<"\n Enter Choice: "; cin>>ch;
+
+if(ch==1)
+
+{
+
+for(int i=0;i<t;i++)
+
+{
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+}
+
+else
+
+{
+
+ 
+
+x3=x1+i; x4=x2+i; y3=y1;
+
+y4=y2; setcolor(5);
+
+rectangle(x1,y1,x2,y2); setcolor(4);
+
+rectangle(x3,y3,x4,y4); delay(30);
+
+ 
+
+for(int i=0;i<t;i++)
+
+{
+
+y3=y1+i; y4=y2+i; x3=x1; x4=x2;
+
+setcolor(6);
+
+rectangle(x1,y1,x2,y2); setcolor(12);
+
+rectangle(x3,y3,x4,y4); delay(12);
+
+}
+
+}
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+ 	 
+
+
+
+
+
+
+
+D.	Write a program to perform rotation of a circle about arbitrary axis.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<dos.h> #include<math.h> void main()
+
+{
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); int x1=470,y1=300,r=30;
+
+circle(x1,y1,r); float i,de;
+
+do
+
+{
+
+de++; de=(de*(3.14/180));
+
+x1=x1*cos(de)-y1*sin(de); y1=x1*sin(de)+y1*cos(de);
+
+ 
+
+cleardevice(); setcolor(2); circle(x1,y1,r); delay(20); i++;
+
+}
+
+while(i<1000); getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+
+
+
+
+E.	Write a program to implement 2D Scaling, Rotation, and Translation using switch case.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<math.h> void translate();
+
+void scale();
+
+ 
+
+void rotate(); void main()
+
+{
+
+int ch;
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C://TC//BGI"); setcolor(6);
+
+outtextxy(125,95,"object"); rectangle(110,150,150,110); cout<<"\n ----MENU	";
+
+cout<<"\n Translate \n Scale \n Rotate "; cout<<"\n Enter Choice: ";
+
+cin>>ch;
+
+cleardevice(); switch(ch)
+
+{
+
+case 1 :
+
+translate(); break;
+
+case 2 :
+
+scale(); break;
+
+case 3 :
+
+rotate(); break;
+
+default:
+
+cout<<"\n Invalid Choice \n "; break;
+
+}
+
+getch(); closegraph();
+
+}
+
+void translate()
+
+ 
+
+{
+
+int tx,ty; setcolor(2);
+
+outtextxy(240,10,"TRANSLATION");
+
+outtextxy(238,20,"	"); cout<<"\n Enter tx: ";
+
+cin>>tx;
+
+cout<<"\n Enter ty: "; cin>>ty;
+
+cleardevice();
+
+rectangle(100,150,150,100); cout<<"\n After translation : \n";
+
+rectangle(100+tx,150+ty,150+tx,100+ty);
+
+}
+
+void scale()
+
+{
+
+int sx,sy; setcolor(2);
+
+outtextxy(240,10,"SCALING"); outtextxy(238,20,"	");
+
+cout<<"\n Enter the value for sx and sy :"; cin>>sx>>sy;
+
+cleardevice();
+
+rectangle(100,150,150,100); cout<<"\n After scaling : \n";
+
+rectangle(100*sx,150*sy,150*sx,100*sy);
+
+}
+
+void rotate()
+
+{
+
+float a;
+
+int x1,x2,x3,x4,y1,y2,y3,y4;
+
+int ax1,ax2,ax3,ax4,ay1,ay2,ay3,ay4; int refx,refy;
+
+ 
+
+cout<<"\n Enter the angle of rotation : "; cin>>a;
+
+a=a*(3.14/180);
+
+cleardevice(); setcolor(2);
+
+outtextxy(240,10,"ROTATION"); outtextxy(238,20,"	"); refx=100;
+
+refy=100; x1=100; x2=150; x3=150; x4=100; y1=100; y2=100; y3=150; y4=150;
+
+ax1=refy+(x1-refx)*cos(a)-(y1-refy)*sin(a); ay1=refy+(x1-refx)*sin(a)+(y1-refy)*cos(a); ax2=refy+(x2-refx)*cos(a)-(y2-refy)*sin(a); ay2=refy+(x2-refx)*sin(a)+(y2-refy)*cos(a); ax3=refy+(x3-refx)*cos(a)-(y3-refy)*sin(a); ay3=refy+(x3-refx)*sin(a)+(y3-refy)*cos(a); ax4=refy+(x4-refx)*cos(a)-(y4-refy)*sin(a); ay4=refy+(x4-refx)*sin(a)+(y4-refy)*cos(a); rectangle(100,150,150,100);
+
+setcolor(7); line(ax1,ay1,ax2,ay2); line(ax2,ay2,ax3,ay3); line(ax3,ay3,ax4,ay4); line(ax4,ay4,ax1,ay1);
+
+}
+
+ 
+
+Output:
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+ 
+
+Practical 7
+
+A.	Write a program for implementing Cohen-Sutherland Line Clipping Algorithm
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h>
+
+static int LEFT=1,RIGHT=2,BOTTOM=4,TOP=8;
+
+float x_max , y_max , x_min , y_min; int calculate_code (float x , float y)
+
+{
+
+int code=0; if(x < x_min)
+
+{
+
+code|=LEFT;
+
+}
+
+else if(x > x_max)
+
+{
+
+code|=RIGHT;
+
+}
+
+else if(y > y_max)
+
+{
+
+code|=TOP;
+
+}
+
+else if(y < y_min)
+
+{
+
+code|=BOTTOM;
+
+}
+
+return code;
+
+}
+
+void main()
+
+{
+
+ 
+
+int gd = DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); setcolor(WHITE);
+
+float x1,y1,x2,y2; cout<<"\nEnter x1 and y1: "; cin>>x1>>y1;
+
+cout<<"\nEnter x2 and y2: "; cin>>x2>>y2;
+
+cout<<"\nEnter the screen coordinates: "; cout<<"\nx_min and y_min: "; cin>>x_min>>y_min;
+
+cout<<"\nx_max and y_max: "; cin>>x_max>>y_max; cout<<"\nBefore Clipping: ";
+
+rectangle(x_min,y_min,x_max,y_max); line(x1,y1,x2,y2);
+
+getch();
+
+int code1 = calculate_code(x1,y1); int code2 = calculate_code(x2,y2); int accept = 0;
+
+while(1)
+
+{
+
+if(!code1 && !code2)
+
+{
+
+//cout<<"Clipped Line: From("<<x1<<","<<y1<<") to ("<<x2<<","<<y2<<")"<<endl;
+
+accept=1; break;
+
+}
+
+else if(code1 & code2)
+
+{
+
+//cout<<"Line is completely outside the window."<<endl;
+
+ 
+
+
+
+}
+
+else
+
+{
+
+ 
+
+break;
+
+
+
+
+
+
+
+int code_out; float x,y; if(code1 == 0)
+
+{
+
+ 
+
+
+
+}
+
+else
+
+{
+
+
+
+}
+
+ 
+
+code_out = code2;
+
+
+
+
+
+
+
+code_out = code1;
+
+ 
+
+if(code_out &TOP)
+
+{
+
+x = x1+(x2-x1)*(y_max - y1)/(y2-y1); y = y_max;
+
+}
+
+else if(code_out &BOTTOM)
+
+{
+
+x = x1+(x2-x1)*(y_min - y1)/(y2-y1); y = y_min;
+
+}
+
+else if(code_out &RIGHT)
+
+{
+
+y = y1+(y2-y1)*(x_max - x1)/(x2-x1); x=x_max;
+
+}
+
+else if(code_out &LEFT)
+
+{
+
+y = y1+(y2-y1)*(x_min - x1)/(x2-x1); x = x_min;
+
+ 
+
+}
+
+if(code_out == code1)
+
+{
+
+ 
+
+
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+
+
+
+
+}
+
+}
+
+}
+
+ 
+
+x1 = x; y1 = y;
+
+code1 = calculate_code(x1,y1);
+
+
+
+
+
+
+
+x2 = x; y2 = y;
+
+code2 = calculate_code(x2,y2);
+
+ 
+
+if(accept)
+
+{
+
+cleardevice();
+
+cout<<"After clipping";
+
+rectangle(x_min,y_min,x_max,y_max); setcolor(YELLOW);
+
+line(x1,y1,x2,y2);
+
+}
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+ 
+
+
+
+
+
+
+
+B.	Write a program for implementing Liang-Barsky Line Clipping Algorithm.
+
+
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> void main()
+
+{
+
+ 
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI");
+
+int x1,y1,x2,y2,xmax,xmin,ymax,ymin,xx1,yy1,xx2,yy2,dx,dy,i; int p[4],q[4];
+
+float t1,t2,t[4];
+
+cout<<"Enter the lower co-ordinates of window: "; cin>>xmin>>ymin;
+
+cout<<"Enter the upper co-ordinates of window: "; cin>>xmax>>ymax;
+
+setcolor(RED);
+
+rectangle(xmin,ymin,xmax,ymax); cout<<"Enter x1: ";
+
+cin>>x1;
+
+cout<<"Enter y1: "; cin>>y1;
+
+cout<<"Enter x2: "; cin>>x2;
+
+cout<<"Enter y2: "; cin>>y2;
+
+line(x1,y1,x2,y2); dx=x2-x1;
+
+dy=y2-y1; p[0]=-dx;
+
+p[1]=dx;
+
+p[2]=-dy;
+
+p[3]=dy;
+
+q[0]=x1-xmin;
+
+q[1]=xmax-x1;
+
+q[2]=y1-ymin;
+
+q[3]=ymax-y1; for(i=0;i < 4;i++)
+
+{
+
+if(p[i]!=0)
+
+ 
+
+{
+
+
+
+}
+
+else
+
+{
+
+ 
+
+
+
+t[i]=(float)q[i]/p[i];
+
+
+
+
+
+
+
+if(p[i]==0 && q[i] < 0)
+
+cout<<"\nLine completely outside the window";
+
+ 
+
+
+
+
+
+
+
+window";
+
+}
+
+}
+
+ 
+
+else
+
+ 
+
+
+
+if(p[i]==0 && q[i] >= 0)
+
+cout<<"\nLine completely inside the
+
+ 
+
+if (t[0]>t[2])
+
+{
+
+ 
+
+
+
+}
+
+else
+
+{
+
+
+
+}
+
+ 
+
+t1=t[0];
+
+
+
+
+
+
+
+t1=t[2];
+
+ 
+
+if (t[1]<t[3])
+
+{
+
+ 
+
+
+
+}
+
+else
+
+{
+
+
+
+}
+
+ 
+
+t2=t[1];
+
+
+
+
+
+
+
+t2=t[3];
+
+ 
+
+if (t1<t2)
+
+{
+
+xx1=x1+t1*dx; xx2=x1+t2*dx;
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+}
+
+else
+
+{
+
+
+
+}
+
+ 
+
+yy1=y1+t1*dy; yy2=y1+t2*dy;
+
+cout<<"Line after clipping:"; setcolor(WHITE); line(xx1,yy1,xx2,yy2);
+
+
+
+
+
+
+
+cout<<"\nLine lies out of the window";
+
+ 
+
+getch();
+
+}
+
+
+
+
+
+Output:
+
+ 
+
+Practical 8
+
+A.	Write a program to fill a circle using Flood-Fill Algorithm (Using 4 connected area).
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<dos.h>
+
+void ffill(int x,int y,int old_color,int new_color)
+
+{
+
+int current=getpixel(x,y); if(current==old_color)
+
+{
+
+delay(1);
+
+putpixel(x,y,new_color);
+
+ffill(x+1,y,old_color,new_color); ffill(x-1,y,old_color,new_color); ffill(x,y+1,old_color,new_color); ffill(x,y-1,old_color,new_color);
+
+}
+
+}
+
+void main()
+
+{
+
+int xc,yc,r;
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C://TC//BGI");
+
+cout<<"Enter the coordinates of the center : "; cin>>xc>>yc;
+
+cout<<"Enter the radius : "; cin>>r;
+
+circle(xc,yc,r);
+
+cout<<"Press any key to fill circle : "; getch();
+
+ 
+
+ffill(xc,yc,BLACK,RED); getch();
+
+closegraph();
+
+}
+
+
+
+
+
+Output:
+
+
+
+
+
+B.	Write a program to implement boundary-fill concept using 8 connected regions or area.
+
+Code:
+
+#include<iostream.h> #include<conio.h> #include<graphics.h> #include<dos.h>
+
+void bound(int x,int y,int fc,int bc)	//fc = foreground color, bc = background color
+
+{
+
+int current=getpixel(x,y);
+
+if((current != bc)&&(current != fc))
+
+{
+
+delay(1);
+
+putpixel(x,y,fc); bound(x+1,y,fc,bc);
+
+bound(x,y+1,fc,bc);
+
+bound(x+1,y-1,fc,bc);
+
+bound(x-1,y-1,fc,bc);
+
+ 
+
+bound(x-1,y,fc,bc);
+
+bound(x,y-1,fc,bc);
+
+bound(x-1,y+1,fc,bc);
+
+bound(x+1,y-1,fc,bc);
+
+}
+
+}
+
+void main()
+
+{
+
+int gd=DETECT,gm;
+
+initgraph(&gd,&gm,"C:\\TC\\BGI"); rectangle(50,50,100,100); bound(55,55,4,15);
+
+getch(); closegraph();
+
+}
+
+
+
+
+
+
+
+
+
+Output:
+
+ 
+
+
+
